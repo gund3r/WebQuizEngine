@@ -5,7 +5,7 @@ In this project  only backend for the service. There is no frontend.
 
 There are some capabilities of the service:
 
-* register a user
+* register a user request `POST api/register`
  
 You must send a json with email and password like this:
 ````json
@@ -14,7 +14,7 @@ You must send a json with email and password like this:
   "password": "secret"
 }
 ````
-* create a quiz
+* create a quiz request `POST api/quizzes`
 
 You must send a json with some information:
 ````json
@@ -25,7 +25,7 @@ You must send a json with some information:
   "answer": 2
 }
 ````
-* solve a quiz 
+* solve a quiz `POST api/quizzes/{id}/solve`
 
 To solve a quiz you must send a json with your variant of answer, for example:
 ````json
@@ -36,12 +36,14 @@ To solve a quiz you must send a json with your variant of answer, for example:
 When you will see at list with all quizzes with 
 feature "get all quizzes" you do not may see at the answer
 
-And all other capabilities of service:
+And other capabilities of service:
 
-* delete a quiz (you must be author of the quiz)
-* get all quizzes (with pagination and sort support)
-* get a quiz by id
-* get all solved quizzes by user (with pagination and sort support)
+* delete a quiz (you must be author of the quiz) `DELETE api/quizzes/{id}`;
+* get all quizzes (with pagination and sort support) `GET api/quizzes`;
+* get a quiz by id `GET api/quizzes/{id}`;
+* get all solved quizzes by user (with pagination and sort support) `GET api/quizzes/completed`;
+* get all users `GET api/users`;
+* get a user by id `GET api/users/{id}`;
 
 All the operations, except register a user, are protected by basic authentication.
 Users and quizzes are stored in H2 database.
