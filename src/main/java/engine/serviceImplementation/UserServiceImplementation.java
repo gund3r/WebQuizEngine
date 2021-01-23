@@ -1,5 +1,8 @@
-package main.java;
+package engine.serviceImplementation;
 
+import engine.repositories.UserRepository;
+import engine.entities.User;
+import engine.entities.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,4 +1,4 @@
-package main.java;
+package engine.entities;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

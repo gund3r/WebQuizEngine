@@ -1,5 +1,9 @@
-package main.java;
+package engine.serviceImplementation;
 
+import engine.repositories.CompletedQuizzesRepository;
+import engine.repositories.QuizRepository;
+import engine.service.QuizService;
+import engine.entities.*;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;

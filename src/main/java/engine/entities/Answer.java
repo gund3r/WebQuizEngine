@@ -1,4 +1,4 @@
-package main.java;
+package engine.entities;
 
 import lombok.Data;
 

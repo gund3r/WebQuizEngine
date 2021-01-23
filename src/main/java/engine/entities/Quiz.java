@@ -1,4 +1,4 @@
-package main.java;
+package engine.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

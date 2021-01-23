@@ -1,5 +1,6 @@
-package main.java;
+package engine.security;
 
+import engine.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,10 +1,10 @@
-package main.java;
+package engine.service;
 
+import engine.entities.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.security.Principal;
-import java.util.List;
 
 public interface QuizService {
 

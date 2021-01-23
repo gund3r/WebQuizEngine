@@ -1,4 +1,4 @@
-package main.java;
+package engine.entities;
 
 public class Feedback {
 

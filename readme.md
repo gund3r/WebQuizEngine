@@ -22,7 +22,7 @@ You must send a json with some information:
   "title": "The Java Logo",
   "text": "What is depicted on the Java logo?",
   "options": ["Robot","Tea leaf","Cup of coffee","Bug"],
-  "answer": 2
+  "answer": [2]
 }
 ````
 * solve a quiz `POST api/quizzes/{id}/solve`
