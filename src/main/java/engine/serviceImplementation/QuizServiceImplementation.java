@@ -1,6 +1,5 @@
 package engine.serviceImplementation;
 
-import engine.controllers.UserController;
 import engine.repositories.CompletedQuizzesRepository;
 import engine.repositories.QuizRepository;
 import engine.service.QuizService;

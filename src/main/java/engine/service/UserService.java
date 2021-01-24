@@ -1,6 +1,5 @@
 package engine.service;
 
-import engine.entities.Quiz;
 import engine.entities.User;
 import engine.entities.UserDTO;
 
