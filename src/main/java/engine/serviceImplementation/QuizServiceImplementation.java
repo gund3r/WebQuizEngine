@@ -48,11 +48,8 @@ public class QuizServiceImplementation implements QuizService {
         String username = userPrincipal.getName();
         User user = userService.findByUsername(username);
         Long userId = user.getId();
-        System.out.println(userId);
         Pageable paging = PageRequest.of(pageNo, 10,
                 Sort.by(Sort.Direction.DESC, "completedAt"));
-        System.out.println(completedQuizzesRepository.
-                findAllCompletedQuizzesForUser(userId, paging).toList().toString());
         return completedQuizzesRepository.findAllCompletedQuizzesForUser(userId, paging);
     }
 
@@ -91,25 +88,15 @@ public class QuizServiceImplementation implements QuizService {
 
     @Override
     public Feedback solveTheQuiz(Long quizId, Answer answer, User user) {
-        System.out.println("------------SolveTheQuiz------------");
-        System.out.println("user = " + user.toString());
-        System.out.println("answer = " + answer.toString());
-        System.out.println("quizId = " + quizId);
-        System.out.println("----------------------------------");
         Feedback result = new Feedback(false);
         Quiz quiz = getQuizById(quizId);
         List<String> a = quiz.getAnswer();
         List<String> b = answer.getAnswer();
         if (b.equals(a)) {
             result = new Feedback(true);
-            System.out.println("b.equals(a)");
             Long userId = user.getId();
-            System.out.println(userId);
             CompletedQuiz completedQuiz = completedQuizzesRepository.
                     save(new CompletedQuiz(quizId, userId));
-            System.out.println(completedQuiz.toString());
-            System.out.println(quiz.toString());
-            System.out.println(user.toString());
             return result;
         }
         return result;

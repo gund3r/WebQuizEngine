@@ -3,6 +3,7 @@ package engine.serviceImplementation;
 import engine.repositories.UserRepository;
 import engine.entities.User;
 import engine.entities.UserDTO;
+import engine.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,10 +16,11 @@ import java.util.List;
 
 @Component
 @Service
-public class UserServiceImplementation implements UserDetailsService {
+public class UserServiceImplementation implements UserDetailsService, UserService {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -48,7 +50,7 @@ public class UserServiceImplementation implements UserDetailsService {
         return userRepository.findById(id).get();
     }
 
-    public Boolean isExist(Long id) {
+    public boolean isExist(Long id) {
         return userRepository.existsById(id);
     }
 
@@ -62,12 +64,9 @@ public class UserServiceImplementation implements UserDetailsService {
         User newUser = new User();
         String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
         newUser.setUsername(email);
-        System.out.println(userDTO.getEmail());
         newUser.setPassword(encryptedPassword);
-        System.out.println(newUser.toString());
         newUser.setAuthorities("USER");
         userRepository.save(newUser);
-        System.out.println(newUser.toString());
         return newUser;
     }
 
@@ -82,11 +81,6 @@ public class UserServiceImplementation implements UserDetailsService {
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
-
-    /**public List<Quiz> getQuizzesByUser(Long id) {
-     User user = getUserById(id);
-     return user.getQuizzes();
-     }*/
 
     public boolean isEmail(String email) {
         if (email == null) return false;

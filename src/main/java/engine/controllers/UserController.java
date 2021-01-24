@@ -40,11 +40,6 @@ public class UserController {
         return new ResponseEntity<>(userServiceImplementation.getAllUsers(), HttpStatus.OK);
     }
 
-    /**@GetMapping(path = "/users/{userId}/quizzes", produces = "application/json")
-    public ResponseEntity<List<Quiz>> getAllQuizzesByUser(@PathVariable Long userId) {
-    return new ResponseEntity<>(userServiceImplementation.getQuizzesByUser(userId), HttpStatus.OK);
-    }**/
-
     @GetMapping(path = "/users/{userId}", produces = "application/json")
     public ResponseEntity<User> getUserById(@PathVariable Long userId) {
         return new ResponseEntity<>(userServiceImplementation.getUserById(userId), HttpStatus.OK);
@@ -59,15 +54,6 @@ public class UserController {
     public ResponseEntity deleteUserById(@PathVariable Long userId) {
         userServiceImplementation.deleteUserById(userId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
-
-    @PostMapping("/users/logout")
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/api/users";
     }
 
 }

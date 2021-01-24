@@ -1,5 +1,5 @@
 # WebQuizEngine #
-
+***
 This project was developed with "JetBrains Academy" https://hyperskill.org/. 
 In this project  only backend for the service. There is no frontend.
 
