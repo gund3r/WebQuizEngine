@@ -4,6 +4,7 @@ import engine.repositories.UserRepository;
 import engine.entities.User;
 import engine.entities.UserDTO;
 import engine.service.UserService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,6 +19,8 @@ import java.util.List;
 @Service
 public class UserServiceImplementation implements UserDetailsService, UserService {
 
+    final Logger log = org.slf4j.LoggerFactory.getLogger(UserServiceImplementation.class);
+
     @Autowired
     private UserRepository userRepository;
 
@@ -26,7 +29,9 @@ public class UserServiceImplementation implements UserDetailsService, UserServic
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        log.debug("Request to loadUserByUsername: {}", userName);
         User user = findByUsername(userName);
+        log.debug("User from repository: {}", user);
         if (user == null) {
             throw new UsernameNotFoundException("Unknown user: " + userName);
         }
@@ -39,26 +44,31 @@ public class UserServiceImplementation implements UserDetailsService, UserServic
     }
 
     public User findByUsername(String username) {
+        log.debug("Request to findByUsername: {}", username);
         return userRepository.findByUsername(username);
     }
 
     public List<User> getAllUsers() {
+        log.debug("Request to getAllUsers");
         return (List<User>) userRepository.findAll();
     }
 
     public User getUserById(Long id) {
+        log.debug("Request to getUserById: {}", id);
         return userRepository.findById(id).get();
     }
 
     public boolean isExist(Long id) {
+        log.debug("Request to isExistUser: {}", id);
         return userRepository.existsById(id);
     }
 
     public User addUser(UserDTO userDTO) {
+        log.debug("Request to addUser: {}", userDTO);
         if (userDTO == null) return null;
         String email = userDTO.getEmail();
         if (!isEmail(email)) {
-            System.out.println("Bad format for email");
+            log.info("Bad format for email: {}", email);
             return null;
         }
         User newUser = new User();
@@ -71,7 +81,9 @@ public class UserServiceImplementation implements UserDetailsService, UserServic
     }
 
     public User updateUserById(Long id, User userToUpdate) {
+        log.debug("Request to updateUserById: id: {}, userToUpdate: {}", id, userToUpdate);
         User userFromDb = userRepository.findById(id).get();
+        log.debug("User from repository: {}", userFromDb);
         String encryptedPassword = passwordEncoder.encode(userToUpdate.getPassword());
         userFromDb.setUsername(userToUpdate.getUsername());
         userFromDb.setPassword(encryptedPassword);
@@ -79,10 +91,12 @@ public class UserServiceImplementation implements UserDetailsService, UserServic
     }
 
     public void deleteUserById(Long id) {
+        log.debug("Request to deleteUserById: {}", id);
         userRepository.deleteById(id);
     }
 
     public boolean isEmail(String email) {
+        log.debug("Request to isEmail: {}", email);
         if (email == null) return false;
         if (!email.contains("@")) return false;
         char[] charArray = email.toCharArray();
