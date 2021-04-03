@@ -47,3 +47,10 @@ And other capabilities of service:
 
 All the operations, except register a user, are protected by basic authentication.
 Users and quizzes are stored in H2 database.
+
+### Running the application ###
+
+`make #build & run`
+
+By default, it runs on the port 8889 and works with the `quizdb` database in the user's home directory.
+
