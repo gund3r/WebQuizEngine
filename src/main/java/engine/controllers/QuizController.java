@@ -19,9 +19,9 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/api")
-public class QuizController {
+public final class QuizController {
 
-    final Logger log = org.slf4j.LoggerFactory.getLogger(QuizController.class);
+    final private Logger log = org.slf4j.LoggerFactory.getLogger(QuizController.class);
 
     @Autowired
     private QuizServiceImplementation quizService;
@@ -47,7 +47,9 @@ public class QuizController {
     @GetMapping(path = "/quizzes/{quizId}", produces = "application/json")
     public ResponseEntity<Quiz> getQuizById(@PathVariable (value = "quizId") Long quizId) {
         log.debug("REST request to getQuizById: {}", quizId);
-        if (!quizService.isExist(quizId)) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (!quizService.isExist(quizId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         Quiz quiz = quizService.getQuizById(quizId);
         log.debug("Quiz to return: {}", quiz);
         return new ResponseEntity<>(quiz, HttpStatus.OK);
@@ -76,7 +78,9 @@ public class QuizController {
     @DeleteMapping(path = "/quizzes/{quizId}")
     public ResponseEntity<String> deleteQuizById(@PathVariable (value = "quizId") Long quizId) {
         log.debug("REST request to deleteQuizById: {}", quizId);
-        if (!quizService.isExist(quizId)) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (!quizService.isExist(quizId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         Quiz quizToDelete = quizService.getQuizById(quizId);
         log.debug("Get quiz from repository: {}", quizToDelete);
         String currentUser = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();

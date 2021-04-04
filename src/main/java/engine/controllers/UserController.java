@@ -14,12 +14,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class UserController {
+public final class UserController {
 
-    final Logger log = org.slf4j.LoggerFactory.getLogger(UserController.class);
+    final private Logger log = org.slf4j.LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    UserServiceImplementation userServiceImplementation;
+    private UserServiceImplementation userServiceImplementation;
 
     @PostMapping(path = "/register", consumes = "application/json")
     public ResponseEntity<UserDTO> addUser(@Valid @RequestBody UserDTO userDTO) {

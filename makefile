@@ -1,11 +1,14 @@
 run:
 	./gradlew bootRun
 
-build: clear
+build: clean
 	./gradlew build
 
-clear:
+clean:
 	./gradlew clean
+
+lint:
+	./gradlew checkstyleMain
 
 .DEFAULT_GOAL := build-run
 build-run: build run

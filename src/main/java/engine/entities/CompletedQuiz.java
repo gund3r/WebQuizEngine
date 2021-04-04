@@ -20,16 +20,16 @@ public class CompletedQuiz {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    Long cq_id;
+    private Long cqId;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    Long userId;
+    private Long userId;
 
-    Long id;
+    private Long id;
 
-    LocalDateTime completedAt;
+    private LocalDateTime completedAt;
 
-    public CompletedQuiz() {};
+    public CompletedQuiz() { };
 
     public CompletedQuiz(Long quizId, Long userId) {
         this.id = quizId;
@@ -38,7 +38,7 @@ public class CompletedQuiz {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "{id=" + getId() + ", completedAt=" + getCompletedAt() + "}";
     }
 

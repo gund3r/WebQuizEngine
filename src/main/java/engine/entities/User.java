@@ -30,7 +30,7 @@ public class User {
 
     private String authorities;
 
-    public User(){}
+    public User() { }
 
     public User(@Email @NotBlank @Size(min = 2, max = 254) String username,
                 @NotBlank @Size(min = 5, max = 254) String password,

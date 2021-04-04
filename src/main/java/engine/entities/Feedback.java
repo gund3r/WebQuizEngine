@@ -2,12 +2,12 @@ package engine.entities;
 
 public class Feedback {
 
-    boolean success;
-    String feedback;
+    private boolean success;
+    private String feedback;
 
     public Feedback(boolean success) {
         this.success = success;
-        if (false == this.success) {
+        if (!this.success) {
             this.feedback = "Wrong answer! Please, try again.";
         } else {
             this.feedback = "Congratulations, you're right!";
@@ -32,9 +32,9 @@ public class Feedback {
 
     @Override
     public String toString() {
-        return "Answer{" +
-                "success=" + success +
-                ", feedback='" + feedback + '\'' +
-                '}';
+        return "Answer{"
+                + "success=" + success
+                + ", feedback='" + feedback + '\''
+                + '}';
     }
 }

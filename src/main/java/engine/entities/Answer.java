@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class Answer {
+public final class Answer {
 
     @Size(max = 4)
-    List<String> answer = new ArrayList<>();
+    private List<String> answer = new ArrayList<>();
 
-    public Answer() {}
+    public Answer() { }
 
-    public Answer(@Size(max = 4) List<String> answer) {
+    public Answer(List<String> answer) {
         this.answer = answer;
     }
 

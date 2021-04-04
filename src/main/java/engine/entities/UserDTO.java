@@ -8,13 +8,13 @@ public class UserDTO {
 
     @Email
     @Size(min = 4, max = 254)
-    String email;
+    private String email;
 
     @NotBlank
     @Size(min = 5, max = 254)
-    String password;
+    private String password;
 
-    public UserDTO(){}
+    public UserDTO() { }
 
     public UserDTO(@Email @Size(min = 4, max = 254) String email,
                    @NotBlank @Size(min = 5, max = 254) String password) {
@@ -24,10 +24,10 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "UserDTO{"
+                + "email='" + email + '\''
+                + ", password='" + password + '\''
+                + '}';
     }
 
     public String getEmail() {

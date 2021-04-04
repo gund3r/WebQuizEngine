@@ -40,7 +40,7 @@ public class Quiz {
     @JoinColumn(name = "UserID", nullable = false)
     private User user;
 
-    public Quiz() {}
+    public Quiz() { }
 
     public Quiz(@NotBlank String title, @NotBlank String text,
                 @Size(min = 4) List<String> options,
@@ -53,12 +53,12 @@ public class Quiz {
 
     @Override
     public String toString() {
-        return "Quiz{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", text='" + text + '\'' +
-                ", options=" + options +
-                '}';
+        return "Quiz{"
+                + "id=" + id
+                + ", title='" + title + '\''
+                + ", text='" + text + '\''
+                + ", options=" + options
+                + '}';
     }
 
 }

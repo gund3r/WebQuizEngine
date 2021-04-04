@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class UserServiceImplementation implements UserDetailsService, UserService {
 
-    final Logger log = org.slf4j.LoggerFactory.getLogger(UserServiceImplementation.class);
+    final private Logger log = org.slf4j.LoggerFactory.getLogger(UserServiceImplementation.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -65,7 +65,9 @@ public class UserServiceImplementation implements UserDetailsService, UserServic
 
     public User addUser(UserDTO userDTO) {
         log.debug("Request to addUser: {}", userDTO);
-        if (userDTO == null) return null;
+        if (userDTO == null) {
+            return null;
+        }
         String email = userDTO.getEmail();
         if (!isEmail(email)) {
             log.info("Bad format for email: {}", email);
@@ -97,8 +99,12 @@ public class UserServiceImplementation implements UserDetailsService, UserServic
 
     public boolean isEmail(String email) {
         log.debug("Request to isEmail: {}", email);
-        if (email == null) return false;
-        if (!email.contains("@")) return false;
+        if (email == null) {
+            return false;
+        }
+        if (!email.contains("@")) {
+            return false;
+        }
         char[] charArray = email.toCharArray();
         String result = "";
         for (int i = 0; i < charArray.length; i++) {

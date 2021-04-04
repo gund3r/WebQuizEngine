@@ -22,7 +22,7 @@ import java.util.List;
 @Service
 public class QuizServiceImplementation implements QuizService {
 
-    final Logger log = org.slf4j.LoggerFactory.getLogger(QuizServiceImplementation.class);
+    final private Logger log = org.slf4j.LoggerFactory.getLogger(QuizServiceImplementation.class);
 
     @Autowired
     private QuizRepository quizRepository;
@@ -33,7 +33,9 @@ public class QuizServiceImplementation implements QuizService {
     @Autowired
     private UserServiceImplementation userService;
 
-    public QuizServiceImplementation(QuizRepository quizRepository, CompletedQuizzesRepository completedQuizzesRepository, UserServiceImplementation userService) {
+    public QuizServiceImplementation(QuizRepository quizRepository,
+                                     CompletedQuizzesRepository completedQuizzesRepository,
+                                     UserServiceImplementation userService) {
         this.quizRepository = quizRepository;
         this.completedQuizzesRepository = completedQuizzesRepository;
         this.userService = userService;
@@ -68,7 +70,9 @@ public class QuizServiceImplementation implements QuizService {
     @Override
     public Quiz addQuiz(final Quiz quiz) {
         log.debug("Request to addQuiz: {}", quiz);
-        String currentUser = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        String currentUser = ((UserDetails) SecurityContextHolder
+                            .getContext().getAuthentication()
+                            .getPrincipal()).getUsername();
         User user = userService.findByUsername(currentUser);
         log.debug("Current user: {}", user);
         quiz.setUser(user);
