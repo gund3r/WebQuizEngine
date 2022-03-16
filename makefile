@@ -10,5 +10,8 @@ clean:
 lint:
 	./gradlew checkstyleMain
 
+test:
+	./gradlew test
+
 .DEFAULT_GOAL := build-run
 build-run: build run

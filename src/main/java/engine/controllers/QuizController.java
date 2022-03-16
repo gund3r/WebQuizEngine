@@ -29,6 +29,12 @@ public final class QuizController {
     @Autowired
     private UserServiceImplementation userService;
 
+    @GetMapping(produces = {"application/json"})
+    public ResponseEntity<String> greeting() {
+        log.debug("REST request to greeting");
+        return new ResponseEntity<>("Welcome to QuizService", HttpStatus.OK);
+    }
+
     @GetMapping(path = "/quizzes", produces = {"application/json"})
     public ResponseEntity<Page<Quiz>> getAllQuizzes(@PageableDefault(sort = "id") Pageable pageable) {
         log.debug("REST request to getAllQuizzes");

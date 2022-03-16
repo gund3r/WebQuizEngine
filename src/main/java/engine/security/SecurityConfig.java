@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api/register", "/h2-console/**", "/actuator/shutdown").permitAll()
+                .antMatchers("/api", "/api/register", "/h2-console/**", "/actuator/shutdown").permitAll()
                 .antMatchers("/api/**").hasRole("USER")
                 .anyRequest().authenticated()
                 .and().httpBasic()
